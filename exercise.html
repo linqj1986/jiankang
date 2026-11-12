@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>运动记录 - 健康测试站</title>
+  <meta name="description" content="记录今日运动，按WHO口径折算为中等强度等效分钟，查看是否达到每日运动量目标。">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>健康测试站</h1>
+    <nav class="nav" aria-label="页面导航">
+      <a href="index.html">营养摄入</a>
+      <a href="exercise.html" class="active">运动记录</a>
+    </nav>
+    <button id="theme-btn" type="button" aria-label="切换主题">🌗</button>
+  </header>
+
+  <main class="layout">
+    <!-- 左栏：运动进度 -->
+    <section class="col-left">
+      <div class="card dash-card">
+        <div class="hero">
+          <div class="hero-main">
+            <span class="hero-label">今日运动量（中等强度等效分钟）</span>
+            <span class="hero-figure"><span id="hero-val">0</span><span class="hero-sub" id="hero-sub">/ 30 分钟</span></span>
+            <span id="hero-pct" class="hero-pct">0%</span>
+            <span id="hero-state"></span>
+          </div>
+          <span class="hero-date" id="hero-date"></span>
+        </div>
+
+        <div class="group">
+          <h3>运动目标</h3>
+          <div id="group-exercise" class="meters"></div>
+        </div>
+
+        <p class="note">折算口径（WHO）：1分钟高强度≈2分钟中等强度，轻度约减半。WHO建议成人每周150~300分钟中等强度有氧，按日均30分钟。</p>
+      </div>
+    </section>
+
+    <!-- 右栏：运动录入 -->
+    <section class="col-right">
+      <div class="card ex-card">
+        <h2>记录今天的运动</h2>
+        <div id="ex-list" class="food-list"></div>
+        <div class="entries-head">
+          <h2>今日运动</h2>
+          <button type="button" id="ex-clear-btn" class="link-btn">清空</button>
+        </div>
+        <div id="ex-entries" class="entries"></div>
+        <p class="footnote">数据保存在浏览器本地，每天自动重新开始。</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="foods.js"></script>
+  <script src="exercises.js"></script>
+  <script src="shared.js"></script>
+  <script src="exercise.js"></script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>健康测试站</title>
+  <meta name="description" content="按性别与体重查看今日营养摄入进度：热量、蛋白质、糖、钠(盐)、维生素与矿物质。">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>健康测试站</h1>
+    <nav class="nav" aria-label="页面导航">
+      <a href="index.html" class="active">营养摄入</a>
+      <a href="exercise.html">运动记录</a>
+    </nav>
+    <button id="theme-btn" type="button" aria-label="切换主题">🌗</button>
+  </header>
+
+  <main class="layout">
+    <!-- 左栏：目标设置 + 营养进度 -->
+    <section class="col-left">
+      <div class="card profile-card">
+        <h2>每日目标设置</h2>
+        <div class="profile-row">
+          <div class="field">
+            <span class="field-label">性别</span>
+            <div class="seg">
+              <button type="button" class="gender-btn" data-gender="male">男</button>
+              <button type="button" class="gender-btn" data-gender="female">女</button>
+            </div>
+          </div>
+          <div class="field field-weight">
+            <span class="field-label">体重 <b id="weight-val">60</b> kg</span>
+            <input type="range" id="weight" min="40" max="70" step="1" value="60"
+                   aria-label="体重，40到70公斤">
+          </div>
+        </div>
+        <p class="note">目标值按《中国居民膳食营养素参考摄入量(2023)》18-49岁轻体力活动成人估算，热量与蛋白质随体重动态计算。</p>
+      </div>
+
+      <div class="card dash-card">
+        <div class="hero">
+          <div class="hero-main">
+            <span class="hero-label">今日热量摄入</span>
+            <span class="hero-figure"><span id="hero-val">0</span><span class="hero-sub" id="hero-sub">/ 0 kcal</span></span>
+            <span id="hero-pct" class="hero-pct">0%</span>
+            <span id="hero-state"></span>
+          </div>
+          <span class="hero-date" id="hero-date"></span>
+        </div>
+
+        <div class="group">
+          <h3>宏量营养素</h3>
+          <div id="group-macro" class="meters"></div>
+        </div>
+        <div class="group">
+          <h3>维生素</h3>
+          <div id="group-vitamin" class="meters meters-grid"></div>
+        </div>
+        <div class="group">
+          <h3>矿物质</h3>
+          <div id="group-mineral" class="meters meters-grid"></div>
+        </div>
+
+        <details class="table-details">
+          <summary>查看数据表格</summary>
+          <table class="nutri-table">
+            <thead><tr><th>营养素</th><th>已摄入</th><th>目标</th><th>进度</th></tr></thead>
+            <tbody id="table-body"></tbody>
+          </table>
+        </details>
+      </div>
+    </section>
+
+    <!-- 右栏：食物录入 -->
+    <section class="col-right">
+      <div class="card food-card">
+        <h2>记录今天吃过的食物</h2>
+        <input type="search" id="search" placeholder="搜索食物，如：大皇堡 / 米饭 / 鸡蛋" autocomplete="off">
+
+        <div class="cats" role="tablist" aria-label="食物分类">
+          <button type="button" class="cat-btn active" data-cat="all">全部</button>
+          <button type="button" class="cat-btn" data-cat="fastfood">快餐套餐</button>
+          <button type="button" class="cat-btn" data-cat="staple">主食</button>
+          <button type="button" class="cat-btn" data-cat="protein">蛋白质</button>
+          <button type="button" class="cat-btn" data-cat="vegfruit">蔬果</button>
+          <button type="button" class="cat-btn" data-cat="snack">零食饮料</button>
+          <button type="button" class="cat-btn" data-cat="supplement">补剂</button>
+        </div>
+
+        <div id="food-list" class="food-list" data-cat="all"></div>
+
+        <div class="entries-head">
+          <h2>今日记录</h2>
+          <button type="button" id="clear-btn" class="link-btn">清空</button>
+        </div>
+        <div id="entries" class="entries"></div>
+      </div>
+
+      <p class="footnote">食物营养为估算值（品牌公布值 + 《中国食物成分表》），仅供参考，不构成医疗建议。数据保存在浏览器本地，每天自动重新开始。</p>
+    </section>
+  </main>
+
+  <script src="foods.js"></script>
+  <script src="exercises.js"></script>
+  <script src="shared.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
